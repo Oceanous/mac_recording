@@ -28,14 +28,14 @@ while 1:
         if re.match('(([0-9a-fA-F]{2}:?){6})', mac_addr):
             mac_set.add(mac_addr)
 
-    if counter >= 6:
+    if counter < 6:
+        counter = counter + 1
+    else:
         counter = 0
         f = open('test.txt', 'a')
         # f.write('connection addr:' + str(addr) + '\n')
-        f.write('received info: ' + str(mac_set) + '\n')
+        f.write('received info: ' + ' '.join(mac_set) + '\n')
         f.write('timestamp: ' + str(time.time()) + '\n')
         f.close()
         mac_set.clear()
-    else:
-        counter = counter + 1
     conn.close()
