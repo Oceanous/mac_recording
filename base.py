@@ -16,7 +16,8 @@ while 1:
     conn, addr = s.accept()
     data = conn.recv(bufsize)
     if not data:
-        break
+        conn.close()
+        continue
     data_list = data.split(" ")
     if (data_list[0] == "mac:"):
         print('valid macs: ')
